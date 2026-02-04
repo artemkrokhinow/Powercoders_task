@@ -1,12 +1,22 @@
 
 import csv from 'csv-parser';
 import fs from'fs';
+
+
+
+
+
+
+const fileName = 'raw_client_data.csv'
+
+
+
 const Client_ID = [];
 const  results = [];
 const newArray = [];
 function processData() {
     ///raw_client_data.csv change to your file 
-fs.createReadStream('raw_client_data.csv')
+fs.createReadStream(fileName)
   .pipe(csv())
   .on('data', (data) => results.push(data))
   .on('end', () => {for (let i = 2; i < results.length; i++) {
@@ -80,8 +90,9 @@ Client_ID: clientId,
     const csvData = newArray.map(i =>(
         `${i.Client_ID},${i.Full_Name},${i.Region_Code},${i.ISO_Date}`
     )).join('\n')
-    fs.writeFileSync('raw_client_data.csv',csvHeader + csvData,'utf-8');
-    console.log('data successfully saved in raw_client_data.csv');
+    ///change file name here \/
+    fs.writeFileSync(fileName,csvHeader + csvData,'utf-8');
+    console.log('data successfully updated in raw_client_data.csv');
 }
 
 
