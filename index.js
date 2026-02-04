@@ -73,9 +73,10 @@ Client_ID: clientId,
  Region_Code:regionCode,
  ISO_Date:date
 })
-console.log(newArray)
+
     }
     }
+    console.log(newArray)
 }
 
 
