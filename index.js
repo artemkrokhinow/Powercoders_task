@@ -1,14 +1,10 @@
-
 import csv from 'csv-parser';
 import fs from'fs';
 
 
-
-
-
-
+/////FILENAME
 const fileName = 'raw_client_data.csv'
-
+/////FILENAME
 
 
 const Client_ID = [];
