@@ -11,7 +11,6 @@ fs.createReadStream('raw_client_data.csv')
   .on('data', (data) => results.push(data))
   .on('end', () => {for (let i = 2; i < results.length; i++) {
     const dataObject = results[i];
-    const nameData = dataObject[0]; 
     const rawString = dataObject['SYSTEM_EXPORT_ID: #8842-Alpha']   ;
     if (rawString){
 const dataOfObject = rawString.split('|');
@@ -77,7 +76,14 @@ Client_ID: clientId,
     }
     }
     console.log(newArray)
+    const csvHeader = 'Client_ID, Full_Name, Region_Code, ISO_Date\n';
+    const csvData = newArray.map(i =>(
+        `${i.Client_ID},${i.Full_Name},${i.Region_Code},${i.ISO_Date}`
+    )).join('\n')
+    fs.writeFileSync('raw_client_data.csv',csvHeader + csvData,'utf-8');
+    console.log('data successfully saved in raw_client_data.csv');
 }
+
 
 
 )}
